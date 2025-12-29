@@ -8,10 +8,10 @@ import img4 from "../assets/s4.jpg";
 const Slippers = () => {
 
   const data = [
-    { img: img1, name: " Shoes & footwear", price: "₹1,499", offer: "20% OFF" },
-    { img: img2, name: " Shoes & footwear", price: "₹1,499", offer: "20% OFF" },
-    { img: img3, name: " Shoes & footwear", price: "₹1,499", offer: "20% OFF" },
-    { img: img4, name: " Shoes & footwear", price: "₹1,499", offer: "20% OFF" },
+    { img: img1, name: " Shoes & footwear", price: "₹1,499",  },
+    { img: img2, name: " Shoes & footwear", price: "₹1,499",  },
+    { img: img3, name: " Shoes & footwear", price: "₹1,499",  },
+    { img: img4, name: " Shoes & footwear", price: "₹1,499",  },
  
   ];
 
@@ -20,12 +20,12 @@ const Slippers = () => {
        <h1 className="text-md font-bold  ">
                 Special Offers On FootWears
             </h1>
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
 
         {data.map((product, index) => (
           <a
             key={index}
-            href={product.link || "#"}
+            href={ "#"}
             className="flex flex-col items-center"
           >
 
@@ -38,9 +38,7 @@ const Slippers = () => {
               {product.name}
             </p>
 
-            <p className="text-green-600 text-sm font-semibold">
-              {product.offer}
-            </p>
+            
 
             <p className="text-black text-sm font-bold">
               {product.price}

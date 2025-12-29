@@ -8,14 +8,14 @@ import img5 from "../assets/w5.jpg";
 const Watchoffers = () => {
 
   const data = [
-    { img: img1, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img2, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img3, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img4, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img5, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img1, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img2, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" },
-    { img: img3, name: "Stylish Watch", price: "₹1,499", offer: "20% OFF" }
+    { img: img1, name: "Stylish Watch", price: "₹1,499", },
+    { img: img2, name: "Stylish Watch", price: "₹1,499", },
+    { img: img3, name: "Stylish Watch", price: "₹1,499", },
+    { img: img4, name: "Stylish Watch", price: "₹1,499", },
+    { img: img5, name: "Stylish Watch", price: "₹1,499", },
+    { img: img1, name: "Stylish Watch", price: "₹1,499", },
+    { img: img2, name: "Stylish Watch", price: "₹1,499", },
+    { img: img3, name: "Stylish Watch", price: "₹1,499", }
   ];
 
   return (
@@ -23,12 +23,12 @@ const Watchoffers = () => {
        <h1 className="text-md font-bold  ">
                 Special Offers On Watches
             </h1>
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
 
         {data.map((product, index) => (
           <a
             key={index}
-            href={product.link || "#"}
+            href={ "#"}
             className="flex flex-col items-center"
           >
 
@@ -41,9 +41,7 @@ const Watchoffers = () => {
               {product.name}
             </p>
 
-            <p className="text-green-600 text-sm font-semibold">
-              {product.offer}
-            </p>
+            
 
             <p className="text-black text-sm font-bold">
               {product.price}

@@ -25,13 +25,13 @@ const Offers = () => {
                 Free Delivery Always + Extra 100 Cashback
             </h1>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mt-4">
                 {data.map((item, index) => (
                     <div key={index} className="flex flex-col items-center">
                        <a href="#"> <img 
                             src={item.img} 
                             alt={item.name}
-                            className="w-[130px] h-[130px] object-fit rounded-md" 
+                            className="w-[153px] h-[130px] object-fit rounded-md" 
                         /></a>
                         <p className="mt-2 text-center text-sm font-medium text-gray-700">
                             {item.name}

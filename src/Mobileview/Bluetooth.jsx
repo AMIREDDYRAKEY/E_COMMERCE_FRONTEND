@@ -19,13 +19,13 @@ const Bluetooth = () => {
        <h1 className="text-md font-bold  ">
                 Special Offers On Speakers & Bluetooth
             </h1>
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
 
         {data.map((product, index) => (
           <a
             key={index}
-            href={product.link || "#"}
-            className="flex flex-col items-center"
+            href={ "#"}
+            className="flex flex-col justify-center items-center"
           >
 
             <img
