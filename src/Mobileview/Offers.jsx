@@ -1,9 +1,9 @@
 import React from 'react';
-import img1 from "../assets/f1.png";
-import img2 from "../assets/f2.png";
-import img3 from "../assets/f3.png";
-import img4 from "../assets/f4.png";
-import img5 from "../assets/f1.png";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img4 from "../assets/img4.jpg";
+import img5 from "../assets/img5.jpg";
 
 const Offers = () => {
     const data = [
@@ -28,20 +28,20 @@ const Offers = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mt-4">
                 {data.map((item, index) => (
                     <div key={index} className="flex flex-col items-center">
-                        <img 
+                       <a href="#"> <img 
                             src={item.img} 
                             alt={item.name}
-                            className="w-[130px] h-[130px] object-fit rounded-sm" 
-                        />
+                            className="w-[130px] h-[130px] object-fit rounded-md" 
+                        /></a>
                         <p className="mt-2 text-center text-sm font-medium text-gray-700">
                             {item.name}
                         </p>
                     </div>
                 ))}
             </div>
-             <p className="text-sm text-blue-600  hover:underline cursor-pointer mt-3">
+             <a href='#' className="text-sm text-blue-600  hover:underline cursor-pointer mt-3">
                 See more
-              </p>
+              </a>
         </div>
     );
 };

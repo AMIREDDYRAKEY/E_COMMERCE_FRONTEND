@@ -1,14 +1,17 @@
 import React from "react";
 import img1 from "../assets/Pay.jpg";
-
+import img2 from "../assets/d.png"
+import img3 from '../assets/d1.png'
+import img4 from '../assets/d2.jpg'
+import img5 from '../assets/d3.jpg'
 const Aplications = () => {
   const shortcuts = [
+    { img: img3, name: "Prime Video" },
+    { img: img5, name: "Prime Video" },
     { img: img1, name: "Prime Video" },
-    { img: img1, name: "Prime Video" },
-    { img: img1, name: "Prime Video" },
-    { img: img1, name: "Prime Video" },
-    { img: img1, name: "Prime Video" },
-    { img: img1, name: "Prime Video" },
+    { img: img4, name: "Prime Video" },
+    { img: img5, name: "Prime Video" },
+    { img: img2, name: "Prime Video" },
   ];
 
   return (

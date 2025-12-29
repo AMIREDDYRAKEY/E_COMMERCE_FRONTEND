@@ -1,25 +1,29 @@
 import React from "react";
 import img1 from "../assets/Pay.jpg";
-
+import "../App.css";
+import img2 from "../assets/d.png"
+import img3 from '../assets/d1.png'
+import img4 from '../assets/d2.jpg'
+import img5 from '../assets/d3.jpg'
 const Header = () => {
   const shortcuts = [
     { name: "Pay", img: img1 },
-    { name: "Fresh", img: img1 },
-    { name: "Bazaar", img: img1 },
+    { name: "Fresh", img: img2 },
+    { name: "Bazaar", img: img3 },
     { name: "MX Player", img: img1 },
-    { name: "Pharmacy", img: img1 },
-    { name: "Deals", img: img1 },
-    { name: "Bazaar", img: img1 },
+    { name: "Pharmacy", img: img2 },
+    { name: "Deals", img: img3 },
+    { name: "Bazaar", img: img2 },
     { name: "MX Player", img: img1 },
-    { name: "Pharmacy", img: img1 },
-    { name: "Deals", img: img1 },
+    { name: "Pharmacy", img: img2 },
+    { name: "Deals", img: img3 },
   ];
+
 
   return (
     <div className="bg-gradient-to-b from-red-600 to-red-400 p-5">
 
       <div className="max-w-5xl mx-auto">
-
 
         <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1 snap-x snap-mandatory md:hidden">
           {shortcuts.map((item, i) => (

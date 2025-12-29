@@ -8,10 +8,13 @@ import Deliverbox from '../Mobileview/Deliverbox'
 import Bottomnav from '../Mobileview/Bottomnav'
 import Mobileslider from '../Mobileview/Mobileslider'
 import Cards from '../components/Cards'
-import Mobilecards from '../Mobileview/Mobilecards'
+ 
 import Featurebar from '../Mobileview/Featurebar'
 import Aplications from '../Mobileview/Applications'
 import Offers from '../Mobileview/Offers'
+import Watchoffers from '../Mobileview/Watchoffers'
+import Bluetooth from '../Mobileview/Bluetooth'
+import Slippers from '../Mobileview/Slippers'
 const Home = () => {
   return (
     <div className='bg-[#E3E6E6]'>
@@ -26,7 +29,9 @@ const Home = () => {
             <div className='lg:hidden block bg-[#fffff] pb-[20px]'><Featurebar/></div>
              <div className='lg:hidden block bg-[#fff] pb-[30px]'><Aplications /></div>
                <div className='lg:hidden block bg-[#fff] pb-[10px]'><Offers /></div>
-            <div className='lg:hidden block bg-[#fff]' ><Mobilecards/></div>
+            <div className='lg:hidden block bg-[#fff]' ><Watchoffers/></div>
+             <div className='lg:hidden block bg-[#fff]' ><Bluetooth/></div>
+             <div className='lg:hidden block bg-[#fff]' ><Slippers/></div>
            <div className='lg:hidden block'><Bottomnav/></div>
            </div>
         <div><About/></div>
