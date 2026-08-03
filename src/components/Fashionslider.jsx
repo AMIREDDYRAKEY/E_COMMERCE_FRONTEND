@@ -45,7 +45,7 @@ const Fashionslider = () => {
         }}
 
         className="
-          h-[160px] sm:h-[170px]
+          h-[160px] sm:h-[190px]
 
           [&_.swiper-button-prev]:opacity-0
           [&_.swiper-button-next]:opacity-0

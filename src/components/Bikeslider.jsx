@@ -17,7 +17,7 @@ const data = {
     { img: img3 },
     { img: img4 },
     { img: img1 },
-     { img: img2 },
+    { img: img2 },
     { img: img3 },
     { img: img4 },
     { img: img1 },
@@ -27,18 +27,24 @@ const data = {
 const Bikeslider = () => {
   return (
     <div className="bg-white w-[98%] group overflow-hidden ml-[10px]">
-        <h2 className="text-[20px] font-semibold lg:ml-6 mt-2 ">
+      <h2 className="text-[20px] font-semibold lg:ml-6 mt-2 ">
         Best Sellers in Clothing & Accessories
       </h2>
       <Swiper
-            modules={[Navigation]}
-            navigation
-            loop
-            slidesPerView={5}
-            spaceBetween={6}
-            allowTouchMove
-            grabCursor
-            className="
+        modules={[Navigation]}
+        navigation
+        loop
+        spaceBetween={6}
+        allowTouchMove
+        grabCursor
+        breakpoints={{
+          0: { slidesPerView: 2, spaceBetween: 6 },
+          480: { slidesPerView: 3, spaceBetween: 6 },
+          640: { slidesPerView: 4, spaceBetween: 8 },
+          1024: { slidesPerView: 5, spaceBetween: 10 },
+          1280: { slidesPerView: 6, spaceBetween: 10 },
+        }}
+        className="
               h-[170px]
     
               [&_.swiper-button-prev]:opacity-0
@@ -73,7 +79,7 @@ const Bikeslider = () => {
               max-md:[&_.swiper-button-prev]:hidden
               max-md:[&_.swiper-button-next]:hidden
             "
-          >
+      >
         {data.slide.map((item, index) => (
           <SwiperSlide
             key={index}

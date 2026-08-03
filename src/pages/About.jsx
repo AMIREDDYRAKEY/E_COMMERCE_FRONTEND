@@ -5,16 +5,17 @@ import Cards from '../components/Cards'
 import Bikeslider from '../components/Bikeslider'
 import Fashionslider from '../components/Fashionslider'
 import Contact from '../components/Contact'
+
 const About = () => {
   return (
     <div>
-        <div className=' hidden lg:block '><Slider/></div>
-        <div className='hidden lg:block'><Cards/></div>
-        <div className='pb-[20px] hidden lg:flex' ><Bikeslider/></div>
-        <div className='pb-[90px] hidden lg:flex'><Fashionslider/></div>
-         <div className='hidden lg:flex'><Cardsprice/></div>
-          <div className='pb-[0px] hidden lg:flex '><Fashionslider/></div>
-         <div className='hidden lg:block'><Contact/></div>
+      <Slider />
+      <Cards />
+      <div className='pb-[20px]'><Bikeslider /></div>
+      <div className='pb-[20px]'><Fashionslider /></div>
+      <Cardsprice />
+      <div className='pb-[20px]'><Fashionslider /></div>
+      <Contact />
     </div>
   )
 }

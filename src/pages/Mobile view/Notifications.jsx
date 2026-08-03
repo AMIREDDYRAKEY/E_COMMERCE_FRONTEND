@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoMdRefresh } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const token = localStorage.getItem("token"); // your login token
 
@@ -60,28 +60,32 @@ const Notifications = () => {
       });
 
       setNotifications((prev) => prev.filter((n) => n._id !== id));
-    } catch (err) {
+    } catch {
       alert("Failed to delete notification");
     }
   };
 
   useEffect(() => {
     fetchNotifications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-3xl mx-auto bg-white shadow rounded-xl p-6">
-        <div className="flex justify-between items-center mb-4">
-          
-          <h2 className="text-xl font-bold">Notifications</h2>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <button onClick={() => navigate("/users")} className="text-xl">
+              <IoIosArrowBack />
+            </button>
+            <h2 className="text-xl font-bold">Notifications</h2>
+          </div>
           <button
             onClick={fetchNotifications}
-            className="px-3 py-2 text-[30px] rounded-lg  text-black"
+            className="px-3 py-2 text-[30px] rounded-lg text-black"
           >
-           <IoMdRefresh />
+            <IoMdRefresh />
           </button>
-          <button className='mt-[-40px]' onClick={()=>navigate("/users")} ><IoIosArrowBack /></button>
         </div>
 
         {/* Loading */}
@@ -100,9 +104,8 @@ const Notifications = () => {
           {notifications.map((n) => (
             <div
               key={n._id}
-              className={`p-4 rounded-lg border flex justify-between items-start gap-4 ${
-                n.isRead ? "bg-gray-50" : "bg-yellow-50 border-yellow-300"
-              }`}
+              className={`p-4 rounded-lg border flex justify-between items-start gap-4 ${n.isRead ? "bg-gray-50" : "bg-yellow-50 border-yellow-300"
+                }`}
             >
               <div>
                 <h3 className="font-semibold">{n.title}</h3>
@@ -110,7 +113,7 @@ const Notifications = () => {
                 <p className="text-xs text-gray-400 mt-1">
                   {new Date(n.createdAt).toLocaleString()}
                 </p>
-              </div>  
+              </div>
 
               <div className="flex flex-col gap-2">
                 {/* {!n.isRead && (

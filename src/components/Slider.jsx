@@ -3,13 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation ,Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import image from "../assets/i1.jpg";
+// import image from "../assets/i1.jpg";
 import img1 from "../assets/slider1.jpg";
 import img2 from "../assets/slider2.jpg";
 import img3 from "../assets/slider3.jpg";
 import img4 from "../assets/slider4.jpg";
 import img5 from "../assets/slider5.jpg";
-import img6 from "../assets/slider6.jpg";
+// import img6 from "../assets/slider6.jpg";
 import img7 from "../assets/slider7.jpg";
 const data = {
   slide: [
@@ -60,14 +60,14 @@ const Slider = () => {
           {/* Background Image */}
           <img
             src={item.image}
-            className="w-full h-[300px] lg:h-[550px] lg:object-fit object-cover lg:mt-[0px] "
+            className="w-full h-[300px] lg:h-[680px] lg:object-fit object-cover lg:mt-[0px] "
           />
 
           {/*  */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div> */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
 
           {/* Left Content */}
-          {/* <div className="absolute inset-0 flex items-center">
+          <div className="absolute inset-0 flex items-center">
             <div className="ml-14 max-w-xl text-white">
               <h2 className="text-4xl font-bold">
                 {item.title}
@@ -80,7 +80,7 @@ const Slider = () => {
                 Shop now
               </button>
             </div>
-          </div> */}
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

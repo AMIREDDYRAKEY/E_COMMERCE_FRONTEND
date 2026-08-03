@@ -3,8 +3,6 @@ import img1 from "../assets/Pay.jpg";
 import "../App.css";
 import img2 from "../assets/d.png"
 import img3 from '../assets/d1.png'
-import img4 from '../assets/d2.jpg'
-import img5 from '../assets/d3.jpg'
 const Header = () => {
   const shortcuts = [
     { name: "Pay", img: img1 },

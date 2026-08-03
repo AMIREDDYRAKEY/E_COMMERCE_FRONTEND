@@ -1,100 +1,205 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaSearch, FaMapMarkerAlt, FaBars, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import {
+  FaShoppingCart,
+  FaSearch,
+  FaMapMarkerAlt,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("phone");
+    window.location.reload();
+  };
 
   return (
-    <nav className="bg-[#131921] text-white px-3 sm:px-4 py-2 flex items-center justify-between gap-3 sm:gap-4 relative">
+    <header className="sticky top-0 z-50">
+      <nav className="bg-[#131921] text-white px-4 py-2 flex items-center justify-between gap-3 relative">
 
-      {/* Logo */}
-      <div className="flex items-center gap-2 shrink-0">
-        <h1 className="text-xl sm:text-2xl font-bold cursor-pointer">
-          amaz<span className="text-orange-400">on</span>
-        </h1>
-      </div>
-
-      {/* Location (Hidden on small screens) */}
-      <div className="hidden lg:flex items-center gap-1 text-sm">
-        <FaMapMarkerAlt size={18} />
-        <div>
-          <p className="text-gray-300 text-xs">Deliver to</p>
-          <p className="font-bold">India</p>
-        </div>
-      </div>
-
-      {/* Search Bar */}
-      <div className="flex flex-1 max-w-[900px] sm:max-w-2xl md:max-w-3xl">
-        <input
-          type="text"
-          placeholder="Search Amazon"
-          className="
-            w-full px-3 py-[6px] sm:py-2 text-black outline-none
-            rounded-l-md text-sm sm:text-base
-          "
-        />
-        <button className="bg-orange-400 px-3 sm:px-4 rounded-r-md flex items-center justify-center">
-          <FaSearch className="text-black" />
-        </button>
-      </div>
-
-      {/* Desktop / Tablet Right Menu */}
-      <div className="hidden md:flex items-center gap-4 lg:gap-6 text-xs sm:text-sm">
-        <div>
-          <p className="text-[10px] sm:text-xs">Hello, sign in</p>
-          <p className="font-bold">Account & Lists</p>
+        {/* Logo */}
+        <div
+          className="flex items-center gap-2 shrink-0 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <h1 className="text-xl sm:text-2xl font-bold">
+            <span className="text-orange-400">amazon</span>
+          </h1>
         </div>
 
-        <div>
-          <p className="text-[10px] sm:text-xs">Returns</p>
-          <p className="font-bold">& Orders</p>
+        {/* Location (Desktop Only) */}
+        <div className="hidden lg:flex items-center gap-1 text-sm">
+          <FaMapMarkerAlt size={18} />
+          <div>
+            <p className="text-gray-300 text-xs">Deliver to</p>
+            <p className="font-bold">India</p>
+          </div>
         </div>
 
-        {/* Cart */}
-        <div className="flex items-center gap-1 font-bold">
-          <FaShoppingCart size={20} />
-          <span className="hidden sm:block">Cart</span>
+        {/* Search Bar */}
+        <div className="flex flex-1 max-w-3xl">
+          <input
+            type="text"
+            placeholder="Search Amazon"
+            className="w-full px-3 py-2 text-black outline-none rounded-l-md text-sm"
+          />
+          <button className="bg-orange-400 px-4 rounded-r-md flex items-center justify-center hover:bg-orange-500 transition">
+            <FaSearch className="text-black" />
+          </button>
         </div>
-      </div>
 
-      {/* Mobile Hamburger */}
-      <div className="md:hidden flex items-center">
-        <button onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#131921] text-white flex flex-col md:hidden shadow-lg z-50">
-
-          <div className="flex flex-col gap-4 p-4 border-b border-gray-700">
-            <div>
-              <p className="text-xs text-gray-300">Hello, sign in</p>
-              <p className="font-bold">Account & Lists</p>
-            </div>
-
-            <div>
-              <p className="text-xs text-gray-300">Returns</p>
-              <p className="font-bold">& Orders</p>
-            </div>
-
-            <div className="flex items-center gap-2 font-bold">
-              <FaShoppingCart size={20} />
-              <span>Cart</span>
-            </div>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <div
+            className="cursor-pointer hover:text-orange-400 transition"
+            onClick={() => {
+              if (token) navigate("/users");
+              else navigate("/login");
+            }}
+          >
+            <p className="text-xs">
+              Hello, {token && username ? username : "sign in"}
+            </p>
+            <p className="font-bold">Account & Lists</p>
           </div>
 
-          <div className="p-4 border-t border-gray-700">
-            <div className="flex items-center gap-2 mb-2">
-              <FaMapMarkerAlt size={18} />
-              <p className="font-bold">India</p>
-            </div>
+          <div
+            className="cursor-pointer hover:text-orange-400 transition"
+            onClick={() => navigate("/users")}
+          >
+            <p className="text-xs">Returns</p>
+            <p className="font-bold">& Orders</p>
           </div>
 
+          <div
+            className="flex items-center gap-1 font-bold cursor-pointer hover:text-orange-400 transition"
+            onClick={() => navigate("/cart")}
+          >
+            <FaShoppingCart size={20} />
+            <span className="hidden sm:block">Cart</span>
+          </div>
+
+          {token ? (
+            <button
+              onClick={handleLogout}
+              className="bg-orange-400 text-black px-3 py-1 rounded text-xs font-bold hover:bg-orange-500 transition"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-orange-400 text-black px-3 py-1 rounded text-xs font-bold hover:bg-orange-500 transition"
+            >
+              Sign In
+            </button>
+          )}
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Dropdown */}
+        {menuOpen && (
+          <div className="absolute top-full left-0 w-full bg-[#131921] text-white flex flex-col shadow-lg md:hidden z-50">
+
+            <div className="flex flex-col gap-4 p-4 border-b border-gray-700">
+
+              <div
+                onClick={() => {
+                  closeMenu();
+                  if (token) navigate("/users");
+                  else navigate("/login");
+                }}
+                className="cursor-pointer"
+              >
+                <p className="text-xs text-gray-300">
+                  Hello, {token && username ? username : "sign in"}
+                </p>
+                <p className="font-bold">Account & Lists</p>
+              </div>
+
+              <div
+                onClick={() => {
+                  closeMenu();
+                  navigate("/users");
+                }}
+                className="cursor-pointer"
+              >
+                <p className="text-xs text-gray-300">Returns</p>
+                <p className="font-bold">& Orders</p>
+              </div>
+
+              <div
+                onClick={() => {
+                  closeMenu();
+                  navigate("/cart");
+                }}
+                className="flex items-center gap-2 font-bold cursor-pointer"
+              >
+                <FaShoppingCart size={20} />
+                <span>Cart</span>
+              </div>
+
+              <div
+                onClick={() => {
+                  closeMenu();
+                  navigate("/products");
+                }}
+                className="cursor-pointer"
+              >
+                <p className="font-bold">All Products</p>
+              </div>
+
+              {token ? (
+                <div
+                  onClick={() => {
+                    closeMenu();
+                    handleLogout();
+                  }}
+                  className="cursor-pointer text-orange-400 font-bold"
+                >
+                  Logout
+                </div>
+              ) : (
+                <div
+                  onClick={() => {
+                    closeMenu();
+                    navigate("/login");
+                  }}
+                  className="cursor-pointer text-orange-400 font-bold"
+                >
+                  Sign In
+                </div>
+              )}
+            </div>
+
+            <div className="p-4 border-t border-gray-700">
+              <div className="flex items-center gap-2">
+                <FaMapMarkerAlt size={18} />
+                <p className="font-bold">India</p>
+              </div>
+            </div>
+
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 

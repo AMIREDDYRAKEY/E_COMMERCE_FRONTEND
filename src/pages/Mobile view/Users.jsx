@@ -10,20 +10,15 @@ import img1 from "../../assets/f1.png";
 import Bottomnav from "../../Mobileview/Bottomnav";
 import { CiLogout } from "react-icons/ci";
 const Users = () => {
-  const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
+  const [username, setUsername] = useState(() => localStorage.getItem("username") || "");
+  // eslint-disable-next-line no-unused-vars
+  const [phone, setPhone] = useState(() => localStorage.getItem("phone") || "");
   const navigate = useNavigate();
 
   // token check
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const savedName = localStorage.getItem("username");
-    const savedPhone = localStorage.getItem("phone");
-
-    if (savedName) setUsername(savedName);
-    if (savedPhone) setPhone(savedPhone);
-
     // if no token => go to register/login
     if (!token) {
       navigate("/users"); // or "/User register"

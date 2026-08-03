@@ -19,21 +19,12 @@ const Menuitems = () => {
   ];
 
   return (
-    <div className="bg-[#232f3e] h-[45px] text-white text-[14px] font-semibold flex items-center p-3">
+    <div className="bg-[#232f3e] text-white text-sm font-semibold h-[45px] flex items-center px-4">
 
-      {/* Scrollable container on small screens */}
-      <div
-        className="
-          flex items-center gap-5 
-          justify-start
-          w-full
-          overflow-x-auto
-          scrollbar-hide
-          whitespace-nowrap
-        "
-      >
+      <div className="flex items-center gap-6 w-full overflow-x-auto whitespace-nowrap no-scrollbar">
+
         {/* All Menu */}
-        <div className="flex items-center gap-2 cursor-pointer hover:text-orange-500">
+        <div className="flex items-center gap-2 cursor-pointer hover:border hover:border-white px-2 py-1 rounded-sm transition">
           <FaBars />
           <span>All</span>
         </div>
@@ -42,11 +33,12 @@ const Menuitems = () => {
         {menuItems.map((item, index) => (
           <div
             key={index}
-            className="cursor-pointer hover:text-orange-500"
+            className="cursor-pointer hover:border hover:border-white px-2 py-1 rounded-sm transition"
           >
             {item}
           </div>
         ))}
+
       </div>
     </div>
   );

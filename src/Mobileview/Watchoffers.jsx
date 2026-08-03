@@ -4,34 +4,33 @@ import { useNavigate } from "react-router-dom";
 
 const Watchoffers = () => {
   const [products, setProducts] = useState([]);
-  const navigate=useNavigate('')
-
-  useEffect(() => {
-    fetchWatchProducts();
-  }, []);
+  const navigate = useNavigate();
 
   const fetchWatchProducts = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/api/products");
-  
-      console.log("API Response:", data);
-  
+
       const allProducts = Array.isArray(data?.products)
         ? data.products
         : Array.isArray(data)
-        ? data
-        : [];
-  
+          ? data
+          : [];
+
       const watches = allProducts.filter(
         (p) => p.category?.toLowerCase() === "watches"
       );
-  
+
       setProducts(watches);
     } catch (error) {
       console.error("Error loading watches:", error);
     }
   };
-  
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchWatchProducts();
+  }, []);
+
 
   return (
     <div className="pb-[30px] p-4">
@@ -40,33 +39,46 @@ const Watchoffers = () => {
       </h1>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center mt-5">
-        {products.map((product) => (
-          <a
-            key={product._id}
-            href="#"
-            className="flex flex-col items-center"
-          >
-          <button onClick={()=>navigate('/products')}>  <img
-              src={`http://localhost:5000/uploads/${product.image}`}
-              className="h-[150px] w-[185px] object-cover rounded-md"
-              alt={product.name}
-            /></button>
+        {products.length === 0 ? (
+          <p className="col-span-full text-gray-500 text-sm">
+            No watch products found.
+          </p>
+        ) : (
+          products.map((product) => (
+            <div
+              key={product._id}
+              onClick={() => navigate(`/product/${product._id}`)}
+              className="flex flex-col items-center cursor-pointer hover:shadow-md transition rounded-lg p-2"
+            >
+              <img
+                src={
+                  product.image?.startsWith("http")
+                    ? product.image
+                    : `http://localhost:5000/uploads/${product.image}`
+                }
+                className="h-[150px] w-[185px] object-cover rounded-md"
+                alt={product.name || product.title}
+              />
 
-            <p className="mt-2 text-center text-sm font-medium text-gray-700">
-              {product.name}
-            </p>
+              <p className="mt-2 text-center text-sm font-medium text-gray-700">
+                {product.name || product.title}
+              </p>
 
-            <p className="text-black text-sm font-bold">
-              ₹{product.price}
-            </p>
-          </a>
-        ))}
+              <p className="text-black text-sm font-bold">
+                ₹{product.price}
+              </p>
+            </div>
+          ))
+        )}
       </div>
 
       <div className="mt-5">
-        <a href="#" className="text-sm text-blue-600 hover:underline cursor-pointer">
+        <button
+          onClick={() => navigate("/products")}
+          className="text-sm text-blue-600 hover:underline cursor-pointer"
+        >
           See more
-        </a>
+        </button>
       </div>
     </div>
   );
