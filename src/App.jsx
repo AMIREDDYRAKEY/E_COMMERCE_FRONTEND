@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import Users from './pages/Mobile view/Users'
 import Cart from './pages/Mobile view/Cart'
@@ -16,6 +17,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/users" element={<Users />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/menu" element={<Menu />} />
