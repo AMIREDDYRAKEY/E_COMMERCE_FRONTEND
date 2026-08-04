@@ -8,7 +8,7 @@ const Watchoffers = () => {
 
   const fetchWatchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/products");
+      const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products");
 
       const allProducts = Array.isArray(data?.products)
         ? data.products
@@ -54,7 +54,7 @@ const Watchoffers = () => {
                 src={
                   product.image?.startsWith("http")
                     ? product.image
-                    : `http://localhost:5000/uploads/${product.image}`
+                    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${product.image}`
                 }
                 className="h-[150px] w-[185px] object-cover rounded-md"
                 alt={product.name || product.title}

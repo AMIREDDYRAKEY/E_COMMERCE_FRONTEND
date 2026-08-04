@@ -17,7 +17,7 @@ const Notifications = () => {
       setLoading(true);
       setError("");
 
-      const res = await axios.get("http://localhost:5000/api/Notification", {
+      const res = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/Notification", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +36,7 @@ const Notifications = () => {
   // const markAsRead = async (id) => {
   //   try {
   //     await axios.put(
-  //       `http://localhost:5000/api/Notification/${id}/read`,
+  //       `${import.meta.env.VITE_BACKEND_URL}/api/Notification/${id}/read`,
   //       {},
   //       {
   //         headers: { Authorization: `Bearer ${token}` },
@@ -55,7 +55,7 @@ const Notifications = () => {
   //delete notification
   const deleteNotification = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/Notification/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/Notification/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

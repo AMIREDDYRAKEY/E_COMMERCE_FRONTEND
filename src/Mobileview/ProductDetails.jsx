@@ -14,7 +14,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`);
         const productData = data?.product || data;
         setProduct(productData);
       } catch (err) {
@@ -36,7 +36,7 @@ const ProductDetails = () => {
       }
 
       await axios.post(
-        "http://localhost:5000/api/cart/add",
+        import.meta.env.VITE_BACKEND_URL + "/api/cart/add",
         { productId: product._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -59,7 +59,7 @@ const ProductDetails = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/orders/buynow",
+        import.meta.env.VITE_BACKEND_URL + "/api/orders/buynow",
         { productId: product._id, qty: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -96,7 +96,7 @@ const ProductDetails = () => {
 
   const imageUrl = product.image?.startsWith("http")
     ? product.image
-    : `http://localhost:5000/uploads/${product.image}`;
+    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${product.image}`;
 
   return (
     <div className="bg-gray-100 min-h-screen pb-24">

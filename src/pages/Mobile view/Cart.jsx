@@ -8,7 +8,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const BASE_URL = "http://localhost:5000"; // change if needed
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL; // change if needed
 
   // ✅ Fetch Cart Products from Backend
   const fetchCart = async () => {
@@ -114,7 +114,7 @@ const Cart = () => {
                 src={
                   item.image?.startsWith("http")
                     ? item.image
-                    : `http://localhost:5000/uploads/${item.image}`
+                    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${item.image}`
                 }
                 alt="product"
                 className="h-full w-full object-cover"

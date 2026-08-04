@@ -12,7 +12,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/products");
+        const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products");
         const allProducts = Array.isArray(data?.products)
           ? data.products
           : Array.isArray(data)
@@ -56,7 +56,7 @@ const Products = () => {
                 src={
                   p.image?.startsWith("http")
                     ? p.image
-                    : `http://localhost:5000/uploads/${p.image}`
+                    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${p.image}`
                 }
                 alt={p.title || p.name}
                 className="h-32 sm:h-40 w-full rounded-lg object-cover"
