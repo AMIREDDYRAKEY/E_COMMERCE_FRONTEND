@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   FaShoppingCart,
   FaSearch,
@@ -10,6 +11,7 @@ import {
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   const closeMenu = () => setMenuOpen(false);
@@ -23,6 +25,20 @@ const Navbar = () => {
     localStorage.removeItem("phone");
     window.location.reload();
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products");
+        const allProducts = Array.isArray(data?.products) ? data.products : Array.isArray(data) ? data : [];
+        const uniqueCategories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
+        setCategories(uniqueCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50">
@@ -64,7 +80,7 @@ const Navbar = () => {
           <div
             className="cursor-pointer hover:text-orange-400 transition"
             onClick={() => {
-              if (token) navigate("/users");
+              if (token) navigate("/dashboard");
               else navigate("/login");
             }}
           >
@@ -76,7 +92,7 @@ const Navbar = () => {
 
           <div
             className="cursor-pointer hover:text-orange-400 transition"
-            onClick={() => navigate("/users")}
+            onClick={() => navigate("/dashboard")}
           >
             <p className="text-xs">Returns</p>
             <p className="font-bold">& Orders</p>
@@ -123,7 +139,7 @@ const Navbar = () => {
               <div
                 onClick={() => {
                   closeMenu();
-                  if (token) navigate("/users");
+                  if (token) navigate("/dashboard");
                   else navigate("/login");
                 }}
                 className="cursor-pointer"
@@ -131,18 +147,7 @@ const Navbar = () => {
                 <p className="text-xs text-gray-300">
                   Hello, {token && username ? username : "sign in"}
                 </p>
-                <p className="font-bold">Account & Lists</p>
-              </div>
-
-              <div
-                onClick={() => {
-                  closeMenu();
-                  navigate("/users");
-                }}
-                className="cursor-pointer"
-              >
-                <p className="text-xs text-gray-300">Returns</p>
-                <p className="font-bold">& Orders</p>
+                <p className="font-bold text-orange-400">Your Dashboard</p>
               </div>
 
               <div
@@ -163,8 +168,22 @@ const Navbar = () => {
                 }}
                 className="cursor-pointer"
               >
-                <p className="font-bold">All Products</p>
+                <p className="font-bold text-orange-400">All Products</p>
               </div>
+
+              {/* Dynamic Categories on Mobile */}
+              {categories.map((category, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    closeMenu();
+                    navigate("/products");
+                  }}
+                  className="cursor-pointer capitalize text-sm hover:text-orange-400"
+                >
+                  {category}
+                </div>
+              ))}
 
               {token ? (
                 <div
@@ -172,7 +191,7 @@ const Navbar = () => {
                     closeMenu();
                     handleLogout();
                   }}
-                  className="cursor-pointer text-orange-400 font-bold"
+                  className="cursor-pointer text-orange-400 font-bold mt-2"
                 >
                   Logout
                 </div>
@@ -182,7 +201,7 @@ const Navbar = () => {
                     closeMenu();
                     navigate("/login");
                   }}
-                  className="cursor-pointer text-orange-400 font-bold"
+                  className="cursor-pointer text-orange-400 font-bold mt-2"
                 >
                   Sign In
                 </div>
